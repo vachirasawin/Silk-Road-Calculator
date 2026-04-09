@@ -153,3 +153,20 @@ for (auto &curr_product : products) {
 - We'll represent the `profit` of `next_product` as the difference between the `selling_price` of `next_product` and the `purchase_price` of `curr_product`.
 - We'll represent the `cost_price` of `next_product` as the `purchase_price` of `curr_product`.
 - We'll represent the `dist` of `next_product` as the difference between the `city` of `next_product` and the `curr_city`.
+
+## Rank the most desirable items to buy
+```cpp
+sort(
+    products.begin(), products.end(),
+    [&] (const Product &a, const Product &b) {
+        if (a.profit != b.profit) return a.profit > b.profit;
+        if (a.cost_price != b.cost_price) return a.cost_price < b.cost_price;
+
+        return a.dist < b.dist;
+    }
+);
+```
+- We'll arrange them in order from the first product to the last product.
+- If the profits of a and b are not equal, choose the one with the highest profit first.
+- If the cost prices of a and b are not equal, the product with the lowest cost price should be placed first.
+- Then I would choose the closer city before the farther one.
