@@ -170,3 +170,31 @@ sort(
 - If the profits of a and b are not equal, choose the one with the highest profit first.
 - If the cost prices of a and b are not equal, the product with the lowest cost price should be placed first.
 - Then I would choose the closer city before the farther one.
+
+## Show calculation results
+```cpp
+for (int next_city = 1; next_city <= 5; next_city++) {
+    if (next_city == 1) cout << "Tyre" << endl;
+    else if (next_city == 2) cout << "Damascus" << endl;
+    else if (next_city == 3) cout << "Palmyra" << endl;
+    else if (next_city == 4) cout << "Ctesiphon" << endl;
+    else if (next_city == 5) cout << "Ecbatana" << endl;
+
+    int products_list = 1;
+    int temp_budget = curr_budget;
+    for (auto &curr_product : products) {
+        if (curr_product.profit > 0 && curr_product.cost_price <= temp_budget && curr_product.city == next_city) {
+            int product_amount = min(curr_capacity, temp_budget / curr_product.cost_price);
+            if (product_amount > 0) {
+                cout << "\t" << products_list++ << ") " << curr_product.product_name << ": " << product_amount << endl;
+                temp_budget -= product_amount * curr_product.cost_price;
+                curr_budget += product_amount * curr_product.profit;
+                curr_capacity -= product_amount;
+            }
+        }
+    }
+    cout << "\tRemaining budget: " << curr_budget << endl;
+}
+```
+- We'll show the calculation results for all cities.
+- It displays the product name, the quantity to be purchased, and then shows the total amount to be received after the transaction.
