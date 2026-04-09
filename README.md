@@ -1,6 +1,6 @@
 # Silk-Road-Calculator
 
-## Data Structure
+## Data structure
 ```cpp
 struct Product {
     int purchase_price;
@@ -20,7 +20,7 @@ struct Product {
 - `city` is an integer variable that stores the location of a city, for example, `Tyre = 1` and `Damascus = 2`.
 - `dist` is an integer variable that stores the distance between the cities where the goods are purchased.
 
-## Add Data
+## Add data
 ```cpp
 vector<Product> products = {
     // Tyre
@@ -131,3 +131,25 @@ int curr_capacity; cin >> curr_capacity;
 - `curr_city` is an integer variable that stores the user's current city location.
 - `curr_budget` is an integer variable that stores the amount of money the user currently has.
 - `curr_capacity` is an integer variable that stores the maximum amount of items the user can currently hold in their inventory.
+
+## Increase profits from product sales
+```cpp
+for (auto &curr_product : products) {
+    if (curr_product.city == curr_city) {
+        for (auto &next_product : products) {
+            if (next_product.city != curr_city && next_product.product_name == curr_product.product_name && next_product.selling_price > curr_product.purchase_price) {
+                next_product.profit = next_product.selling_price - curr_product.purchase_price;
+                next_product.cost_price = curr_product.purchase_price;
+                next_product.dist = abs(next_product.city - curr_city);
+            }
+        }
+    }
+}
+```
+- We'll go through every item in `products` and replace it with `curr_product`.
+- If the city of `curr_product` matches `curr_city`.
+- We'll go through every item in `products` and replace it with `next_product`.
+- If the city of `next_product` does not match `curr_city` and it is the same product and `selling_price` of `next_product` is higher than the `purchase_price` of `curr_product`.
+- We'll represent the `profit` of `next_product` as the difference between the `selling_price` of `next_product` and the `purchase_price` of `curr_product`.
+- We'll represent the `cost_price` of `next_product` as the `purchase_price` of `curr_product`.
+- We'll represent the `dist` of `next_product` as the difference between the `city` of `next_product` and the `curr_city`.
