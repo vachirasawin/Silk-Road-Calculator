@@ -111,3 +111,23 @@ vector<Product> products = {
 ```
 - We need to enter the values ​​that match those in the Data Structure section.
 - We will always set `profit = -1` and `dist = 0`.
+
+## Input
+```cpp
+cout << "Cities:" << endl;
+cout << "\t 1) Tyre" << endl;
+cout << "\t 2) Damascus" << endl;
+cout << "\t 3) Palmyra" << endl;
+cout << "\t 4) Ctesiphon" << endl;
+cout << "\t 5) Ecbatana" << endl;
+
+cout << "Current city: ";
+int curr_city; cin >> curr_city;
+cout << "Current budget: ";
+int curr_budget; cin >> curr_budget;
+cout << "Current capacity: ";
+int curr_capacity; cin >> curr_capacity;
+```
+- `curr_city` is an integer variable that stores the user's current city location.
+- `curr_budget` is an integer variable that stores the amount of money the user currently has.
+- `curr_capacity` is an integer variable that stores the maximum amount of items the user can currently hold in their inventory.
