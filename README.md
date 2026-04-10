@@ -182,14 +182,16 @@ for (int next_city = 1; next_city <= 5; next_city++) {
 
     int products_list = 1;
     int temp_budget = curr_budget;
+    int remaining_budget = curr_budget;
+    int temp_capacity = curr_capacity;
     for (auto &curr_product : products) {
         if (curr_product.profit > 0 && curr_product.cost_price <= temp_budget && curr_product.city == next_city) {
-            int product_amount = min(curr_capacity, temp_budget / curr_product.cost_price);
+            int product_amount = min(temp_capacity, temp_budget / curr_product.cost_price);
             if (product_amount > 0) {
                 cout << "\t" << products_list++ << ") " << curr_product.product_name << ": " << product_amount << endl;
                 temp_budget -= product_amount * curr_product.cost_price;
-                curr_budget += product_amount * curr_product.profit;
-                curr_capacity -= product_amount;
+                remaining_budget += product_amount * curr_product.profit;
+                temp_capacity -= product_amount;
             }
         }
     }
